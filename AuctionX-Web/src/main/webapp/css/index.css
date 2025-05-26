@@ -1,0 +1,257 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column; /* Arrange content vertically */
+    justify-content: space-between; /* Push header/main content up and footer down */
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1c0d33, #070214); /* Even darker, more saturated background */
+    overflow: hidden; /* Hide potential overflow from animations */
+    color: #e0e0e0; /* Light text color */
+    position: relative;
+}
+
+/* --- Animated Background --- */
+/* Using distinct elements for more control over animations */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Ensure it's behind content */
+    perspective: 1000px; /* Add perspective for potential 3D effects */
+}
+
+.bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none; /* Allow clicks to pass through */
+    filter: blur(80px); /* Keep blur, maybe adjust per orb */
+    opacity: 0.7; /* Increased opacity */
+    mix-blend-mode: screen; /* Creates cool blending effects */
+}
+
+.orb-1 {
+    width: 400px; height: 400px;
+    top: 10%; left: 15%;
+    background: radial-gradient(circle, rgba(168, 126, 232, 0.5), transparent 70%); /* Brighter purple */
+    animation: floatOrb1 20s infinite ease-in-out;
+    filter: blur(100px);
+}
+
+.orb-2 {
+    width: 500px; height: 500px;
+    bottom: 15%; right: 20%;
+    background: radial-gradient(circle, rgba(126, 74, 193, 0.6), transparent 65%); /* Brighter darker purple */
+    animation: floatOrb2 22s infinite ease-in-out reverse;
+    filter: blur(90px);
+}
+
+.orb-3 {
+    width: 300px; height: 300px;
+    top: 40%; right: 10%;
+    background: radial-gradient(circle, rgba(74, 44, 107, 0.7), transparent 60%); /* Even darker, more defined */
+    animation: floatOrb3 18s infinite linear;
+    filter: blur(70px);
+}
+
+.orb-4 {
+    width: 600px; height: 600px;
+    bottom: 5%; left: 10%;
+    background: radial-gradient(circle, rgba(200, 160, 255, 0.4), transparent 55%); /* Lighter, more ethereal */
+    animation: floatOrb4 25s infinite ease;
+    filter: blur(110px);
+    mix-blend-mode: lighten; /* Different blend mode */
+}
+
+/* More dynamic float animations */
+@keyframes floatOrb1 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    25% { transform: translate(50px, 80px) rotate(10deg) scale(1.05); }
+    50% { transform: translate(10px, 10px) rotate(-5deg) scale(1); }
+    75% { transform: translate(60px, -30px) rotate(5deg) scale(0.95); }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+
+@keyframes floatOrb2 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    25% { transform: translate(-60px, -40px) rotate(-8deg) scale(0.98); }
+    50% { transform: translate(0px, -70px) rotate(4deg) scale(1.02); }
+    75% { transform: translate(50px, -10px) rotate(-2deg) scale(1); }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+@keyframes floatOrb3 {
+    0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+    50% { transform: translateY(-50px) translateX(30px) scale(1.1); }
+}
+@keyframes floatOrb4 {
+    0%, 100% { transform: translateX(0) translateY(0) scale(1); }
+    50% { transform: translateX(80px) translateY(-20px) scale(0.9); }
+}
+
+
+/* --- Welcome Container & Box (Glassmorphism) --- */
+.welcome-container {
+    position: relative;
+    z-index: 1; /* Ensure content is above background */
+    perspective: 1000px;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    flex-grow: 1; /* Allows the container to take up available space, pushing footer down */
+    display: flex; /* Use flex to center content vertically within the container */
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-box {
+    background: rgba(255, 255, 255, 0.05); /* Slightly less transparent for better contrast */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly more visible border */
+    padding: 40px 30px;
+    backdrop-filter: blur(15px); /* Increased blur */
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4); /* Darker, larger shadow */
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+    width: 100%; /* Make box take full width of its container */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); } /* Fade in with a larger vertical shift */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    color: #c4a7f0; /* Brighter purple */
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(196, 167, 240, 0.9), 0 0 20px rgba(196, 167, 240, 0.5); /* More prominent glow */
+    font-size: 3em; /* Even larger heading */
+}
+
+p {
+    font-size: 1.15em; /* Slightly larger paragraph font */
+    line-height: 1.7; /* Increased line height for readability */
+    margin-bottom: 18px; /* More space below paragraphs */
+    color: #d0d0d0; /* Slightly brighter text */
+}
+
+.action-area {
+    margin-top: 40px; /* More space above button */
+}
+
+/* --- Login Link Button Style --- */
+.login-link-button {
+    display: inline-block;
+    padding: 14px 35px; /* More padding */
+    background: linear-gradient(45deg, #a87ee8, #7e4ac1);
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1.3em; /* Even larger font */
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* "Super Thing" - Glowing Border Effect on Button Hover */
+.login-link-button::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px;
+    right: -8px; bottom: -8px;
+    background: linear-gradient(45deg, #a87ee8, #7e4ac1, #a87ee8, #7e4ac1); /* Repeating gradient */
+    background-size: 200% 200%; /* Needed for animating gradient position */
+    filter: blur(12px); /* More blur */
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: glowingBorder 4s linear infinite; /* Add animation to the glow */
+    animation-play-state: paused; /* Pause animation by default */
+}
+
+.login-link-button:hover::before {
+    opacity: 1; /* Show glow on hover */
+    animation-play-state: running; /* Run animation on hover */
+}
+
+@keyframes glowingBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+.login-link-button:hover {
+    background: linear-gradient(45deg, #7e4ac1, #a87ee8);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Darker, larger shadow on hover */
+}
+
+.login-link-button:active {
+    transform: scale(0.97); /* More noticeable press effect */
+}
+
+/* --- Footer --- */
+footer {
+    margin-top: 50px; /* More space above footer */
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9em; /* Slightly larger footer text */
+    color: rgba(255, 255, 255, 0.6); /* Slightly less subtle color for copyright */
+    z-index: 1; /* Ensure footer is above background */
+}
+
+
+/* --- Responsiveness --- */
+@media (max-width: 600px) {
+    .welcome-box {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 2.2em; /* Adjust heading size */
+    }
+
+    p {
+        font-size: 1.05em; /* Adjust paragraph size */
+        margin-bottom: 12px;
+    }
+
+    .login-link-button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+
+    .action-area {
+        margin-top: 25px;
+    }
+
+    footer {
+        margin-top: 30px;
+        font-size: 0.85em;
+    }
+
+    /* Adjust background orbs for smaller screens */
+    .bg-orb {
+        filter: blur(50px);
+        opacity: 0.5;
+    }
+    .orb-1 { width: 200px; height: 200px; top: 5%; left: 5%; }
+    .orb-2 { width: 300px; height: 300px; bottom: 10%; right: 10%; }
+    .orb-3 { width: 150px; height: 150px; top: 30%; right: 5%; }
+    .orb-4 { width: 400px; height: 400px; bottom: 2%; left: 5%; }
+}
