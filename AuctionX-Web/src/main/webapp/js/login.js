@@ -1,69 +1,47 @@
-async function logIn() {
+// This is the external JavaScript file for your login page.
+// The background animations are primarily handled by CSS.
 
-    const loginDto = {
-        username: document.getElementById("username").value,
-        password: document.getElementById("password").value,
-    };
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
 
-    try {
-        const response = await fetch("/auctionx-web/login", {
-            method: "POST",
-            body: JSON.stringify(loginDto),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
+    // Example: Prevent default form submission and handle login via AJAX later
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Stop the browser from submitting the form normally
 
+        // --- Add your login logic here ---
+        // e.g., Get username and password
+        // const username = document.getElementById('username').value;
+        // const password = document.getElementById('password').value;
 
-        if (response.ok) {
+        // e.g., Send data to your Java EE backend using Fetch API or XMLHttpRequest
+        // fetch('/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({ username: username, password: password }),
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log('Login response:', data);
+        //     // Handle success (e.g., redirect) or failure (e.g., show error message)
+        // })
+        // .catch((error) => {
+        //     console.error('Error:', error);
+        //     // Handle network errors
+        // });
+        // ----------------------------------
 
-            const json = await response.json();
-            console.log(json);
-            if (json.success) {
-                window.location = "home.html"; // Redirect to home/dashboard
-            } else {
+        console.log('Login form submitted (prevented default)');
+        // You would typically perform validation and send an AJAX request here
+    });
 
-                Swal.fire({
-                    title: 'Error',
-                    text: json.message,
-                    icon: 'error',
-                    confirmButtonText: 'Ok',
-                    customClass: {
-                        popup: 'swal2-popup',
-                        confirmButton: 'swal2-confirm',
-                        title: 'swal2-title'
-                    }
-                });
+    // --- Add other JavaScript logic here ---
+    // e.g., Animations on element visibility
+    // e.g., Simple theme toggling (if implemented in CSS)
+    // e.g., Input validation feedback
+    // ------------------------------------
 
-            }
-        } else {
-            Swal.fire({
-                title: 'Error',
-                text: "Oops, something went wrong.",
-                icon: 'error',
-                confirmButtonText: 'Ok',
-                customClass: {
-                    popup: 'swal2-popup',
-                    confirmButton: 'swal2-confirm',
-                    title: 'swal2-title'
-                }
-            });
-        }
-    } catch (error) {
-        console.error("Login error:", error);
-        Swal.fire({
-            title: "Exception!",
-            text: "Unable to connect to the server.",
-            icon: "error",
-            confirmButtonText: "Ok",
-            customClass: {
-                popup: 'swal2-popup',
-                confirmButton: 'swal2-confirm',
-                title: 'swal2-title'
-            }
-        });
-    }
-}
-
+});
 
 console.log('login.js loaded');
