@@ -1,0 +1,27 @@
+.swal2-popup {
+    background: rgba(240, 240, 255, 0.1); /* translucent light purple background */
+    border: 1px solid #b28dff;
+    color: #ffffff;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 20px #b28dff;
+    border-radius: 15px;
+}
+
+.swal2-title {
+    color: #d6b3ff;
+    text-shadow: 0 0 10px #b28dff;
+}
+
+.swal2-confirm {
+    background: linear-gradient(45deg, #b28dff, #8a63ff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-weight: bold;
+    box-shadow: 0 4px 20px rgba(178, 141, 255, 0.6);
+}
+
+.swal2-confirm:hover {
+    background: linear-gradient(45deg, #8a63ff, #b28dff);
+}
